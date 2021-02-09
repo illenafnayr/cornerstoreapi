@@ -12,7 +12,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ User }) {
       // define association here
       // userId
-      this.belongsTo(User, { foreignKey: userId })
+      this.belongsTo(User, { foreignKey: 'userId' })
+    }
+    toJSON(){
+      return { ...this.get(), id: undefined, userId: undefined }
     }
   };
   Payment.init({
@@ -25,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     number: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
       allowNull: false
     },
     expMonth: {
