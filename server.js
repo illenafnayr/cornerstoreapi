@@ -2,7 +2,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const { Sequelize } = require('sequelize');
-const { sequelize, User } = require('./models');
+const { sequelize } = require('./models');
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
@@ -21,9 +21,12 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
+// Routes
 const usersController = require('./controllers/users_controller.js')
 app.use('/users', usersController)
+
+const paymentsController = require('./controllers/payments_controller.js')
+app.use('/payments', paymentsController)
 
 // Listening //
 app.listen(PORT, async () => {
