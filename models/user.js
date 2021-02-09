@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ Payment }) {
       // define association here
-      this.hasMany(Payment, { foreignKey: 'userId' })
+      this.hasMany(Payment, { foreignKey: 'userId', as: 'payments' })
     }
 
     toJSON(){
@@ -25,23 +25,63 @@ module.exports = (sequelize, DataTypes) => {
     },
     firstName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'email field must be provided'
+          },
+          notEmpty: {
+            msg: 'email field must not be empty'
+          }
+        }
     },
     lastName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'email field must be provided'
+          },
+          notEmpty: {
+            msg: 'email field must not be empty'
+          }
+        }
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'email field must be provided'
+          },
+          notEmpty: {
+            msg: 'email field must not be empty'
+          }
+        }
     },
     passwd: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'password field must be provided'
+          },
+          notEmpty: {
+            msg: 'password field must not be empty'
+          }
+        }
     },
     ip: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'ip field must be provided'
+          },
+          notEmpty: {
+            msg: 'ip field must not be empty'
+          }
+        }
     },
   }, 
   {

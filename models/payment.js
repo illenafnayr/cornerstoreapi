@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ User }) {
       // define association here
       // userId
-      this.belongsTo(User, { foreignKey: 'userId' })
+      this.belongsTo(User, { foreignKey: 'userId', as: 'user' })
     }
     toJSON(){
       return { ...this.get(), id: undefined, userId: undefined }
@@ -25,27 +25,75 @@ module.exports = (sequelize, DataTypes) => {
     },
     ccCompany: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'company field must be provided'
+        },
+        notEmpty: {
+          msg: 'company field must not be empty'
+        }
+      }
     },
     number: {
       type: DataTypes.BIGINT,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'cc number field must be provided'
+        },
+        notEmpty: {
+          msg: 'cc number field must not be empty'
+        }
+      }
     },
     expMonth: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'expiration month field must be provided'
+        },
+        notEmpty: {
+          msg: 'expiration month field must not be empty'
+        }
+      }
     },
     expYear: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'expiration year field must be provided'
+        },
+        notEmpty: {
+          msg: 'expiration year field must not be empty'
+        }
+      }
     },
     cvv: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'cvv field must be provided'
+        },
+        notEmpty: {
+          msg: 'cvv field must not be empty'
+        }
+      }
     },
     primary: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'field must be provided'
+        },
+        notEmpty: {
+          msg: 'field must not be empty'
+        }
+      }
     }
   }, 
   {
