@@ -12,11 +12,15 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
+
+    toJSON(){
+      return { ...this.get(), id:undefined }
+    }
   };
   User.init({
     uuid: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4
+      defaultValue: DataTypes.UUIDV4,
     },
     firstName: {
         type: DataTypes.STRING,
@@ -35,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
     },
     ip: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
     },
   }, 

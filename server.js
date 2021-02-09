@@ -20,12 +20,7 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
-//For development
-// db.sequelize.sync({ force: true }).then(() => {
-//     console.log("Drop and re-sync db.");
-// });
-//For deployment
-// db.sequelize.sync();
+
 
 app.post('/users', async(req, res)=>{
     const { firstName, lastName, email, passwd, ip } = req.body
@@ -38,41 +33,27 @@ app.post('/users', async(req, res)=>{
     }
 })
 
-// app.get('/users', async(req, res)=>{
-//     const { firstName, lastName, email, passwd, ip } = req.body
-//     try {
-//         const user = await User.all({ firstName, lastName, email, passwd, ip })
-//         return res.json(user)
-//     } catch (error) {
-//         console.log(error)
-//         return res.status(500)
-//     }
-// })
-
-
-
-
-
-// Routes //
-// app.get("/", async (req, res) => {
-//     // res.json({ message: "Welcome to bezkoder application." });
-//     try {
-//         let results = await db.all();
-//         res.json(results)
-//     } catch (error) {
-//         console.log(error);
-//         res.sendStatus(500)
-//     }
-// });
-
-
-
-
+app.get('/users', async(req, res)=>{
+    try {
+        const users = await User.findAll()
+        return res.json(users)
+    } catch(error) {
+        console.log(error)
+        return res.status(500).json({error: 'something went wrong'})
+    }
+})
 
 
 // Listening //
 app.listen(PORT, async () => {
     console.log(`we get requests ... port:${PORT}`)
-    await sequelize.sync({ force: true })
-    console.log('database synced!')
+    //For development
+    // await sequelize.sync({ force: true }).then(() => {
+    //     console.log("Drop and re-sync db.");
+    // });
+    //For deployment
+    // await sequelize.sync();
+    await sequelize.authenticate();
+    
+    console.log('database Connected!')
 })
