@@ -56,6 +56,19 @@ app.get('/users/:uuid', async(req, res)=>{
     }
 })
 
+app.delete('/users/:uuid', async(req, res)=>{
+    const uuid = req.params.uuid
+    try {
+        const user = await User.findOne({
+            where: { uuid }
+        })
+        await user.destroy()
+        return res.json({ message: `${uuid} was deleted` })
+    } catch (error) {
+        
+    }
+})
+
 // Listening //
 app.listen(PORT, async () => {
     console.log(`we get requests ... port:${PORT}`)
