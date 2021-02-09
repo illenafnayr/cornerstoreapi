@@ -23,7 +23,7 @@ payments.post('/', async(req, res)=>{
 // Read All
 payments.get('/', async(req, res)=>{
     try {
-        const payments = await Payment.findAll()
+        const payments = await Payment.findAll({ include: [User]})
         return res.json(payments)
     } catch(error) {
         console.log(error)
@@ -36,7 +36,8 @@ payments.get('/:uuid', async(req, res)=>{
     const uuid = req.params.uuid
     try {
         const payment = await Payment.findOne({
-            where: { uuid }
+            where: { uuid },
+            include:[User]
         })
         return res.json(payment)
     } catch (error) {
