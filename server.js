@@ -5,7 +5,7 @@ const { Sequelize } = require('sequelize');
 const { sequelize, User } = require('./models');
 const bodyParser = require("body-parser");
 const cors = require("cors");
-// const db = require("./models");
+
 
 // Config //
 dotenv.config();
@@ -22,52 +22,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.post('/users', async(req, res)=>{
-    const { firstName, lastName, email, passwd, ip } = req.body
-    try {
-        const user = await User.create({ firstName, lastName, email, passwd, ip })
-        return res.json(user)
-    } catch (error) {
-        console.log(error)
-        return res.status(500)
-    }
-})
-
-app.get('/users', async(req, res)=>{
-    try {
-        const users = await User.findAll()
-        return res.json(users)
-    } catch(error) {
-        console.log(error)
-        return res.status(500).json({error: 'something went wrong'})
-    }
-})
-
-app.get('/users/:uuid', async(req, res)=>{
-    const uuid = req.params.uuid
-    try {
-        const user = await User.findOne({
-            where: { uuid }
-        })
-        return res.json(user)
-    } catch (error) {
-        console.log(error)
-        return res.status(500).json({error: 'something went wrong'})
-    }
-})
-
-app.delete('/users/:uuid', async(req, res)=>{
-    const uuid = req.params.uuid
-    try {
-        const user = await User.findOne({
-            where: { uuid }
-        })
-        await user.destroy()
-        return res.json({ message: `${uuid} was deleted` })
-    } catch (error) {
-        
-    }
-})
+const usersController = require('./controllers/users_controller.js')
+app.use('/users', usersController)
 
 // Listening //
 app.listen(PORT, async () => {
