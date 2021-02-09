@@ -1,0 +1,31 @@
+{
+  "name": "cornerstoreapi",
+  "version": "1.0.0",
+  "description": "Corner Store Skateboards Co. API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/illenafnayr/cornerstoreapi.git"
+  },
+  "author": "Ryan Fanelli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/illenafnayr/cornerstoreapi/issues"
+  },
+  "homepage": "https://github.com/illenafnayr/cornerstoreapi#readme",
+  "dependencies": {
+    "-": "^0.0.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "g": "^2.0.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.5.0",
+    "sequelize-cli": "^6.2.0"
+  }
+}
