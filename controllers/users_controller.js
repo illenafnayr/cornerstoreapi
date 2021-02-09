@@ -48,7 +48,7 @@ users.delete('/:uuid', async(req, res)=>{
             where: { uuid }
         })
         await user.destroy()
-        return res.json({ message: `${uuid} was deleted` })
+        return res.json({ message: `User with UUID:${uuid} was deleted` })
     } catch (error) {
         
     }
