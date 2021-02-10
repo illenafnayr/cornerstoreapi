@@ -29,7 +29,7 @@ module.exports = {
         allowNull: false
       },
       ip: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
       },
       createdAt: {

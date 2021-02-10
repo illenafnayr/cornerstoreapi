@@ -29,7 +29,7 @@ module.exports = {
         allowNull: false
       },
       zipcode: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
       },
       isShipping: {

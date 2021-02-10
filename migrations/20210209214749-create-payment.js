@@ -25,7 +25,7 @@ module.exports = {
         allowNull: false
       },
       expMonth: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED.ZEROFILL,
         allowNull: false
       },
       expYear: {

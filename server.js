@@ -28,6 +28,9 @@ app.use('/users', usersController)
 const paymentsController = require('./controllers/payments_controller.js')
 app.use('/payments', paymentsController)
 
+const addressesController = require('./controllers/addresses_controller.js')
+app.use('/addresses', addressesController)
+
 // Listening //
 app.listen(PORT, async () => {
     console.log(`we get requests ... port:${PORT}`)

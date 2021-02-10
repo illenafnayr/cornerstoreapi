@@ -48,7 +48,7 @@ payments.get('/:uuid', async(req, res)=>{
 payments.patch('/:uuid', async(req, res)=>{
     const uuid = req.params.uuid
     try {
-        const payment = await Address.findOne({ where: { uuid } })
+        const payment = await Payment.findOne({ where: { uuid } })
        for (const i in req.body) {
            payment[i] = req.body[i]
        }
