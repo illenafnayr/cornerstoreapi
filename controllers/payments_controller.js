@@ -45,21 +45,21 @@ payments.get('/:uuid', async(req, res)=>{
     }
 })
 
-// payments.patch('/:uuid', async(req, res)=>{
-//     const uuid = req.params.uuid
-//     try {
-//         const payment = await User.findOne({ where: { uuid } })
-//        for (const i in req.body) {
-//            payment[i] = req.body[i]
-//        }
+payments.patch('/:uuid', async(req, res)=>{
+    const uuid = req.params.uuid
+    try {
+        const payment = await Address.findOne({ where: { uuid } })
+       for (const i in req.body) {
+           payment[i] = req.body[i]
+       }
         
-//         await payment.save()
-//         res.json(payment)
-//     } catch (error) {
-//         console.log(error)
-//         return res.status(500).json({ error: 'something went wrong' })
-//     }
-// })
+        await payment.save()
+        res.json(payment)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: 'something went wrong' })
+    }
+})
 
 // Delete One
 payments.delete('/:uuid', async(req, res)=>{
@@ -69,7 +69,7 @@ payments.delete('/:uuid', async(req, res)=>{
             where: { uuid }
         })
         await payment.destroy()
-        return res.json({ message: `Post with UUID:${uuid} was deleted` })
+        return res.json({ message: `Payment option with UUID:${uuid} was deleted` })
     } catch (error) {
         
     }
