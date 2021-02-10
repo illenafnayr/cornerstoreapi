@@ -34,6 +34,12 @@ app.use('/addresses', addressesController)
 const phonenumbersController = require('./controllers/phonenumbers_controller.js')
 app.use('/phonenumbers', phonenumbersController)
 
+const productsController = require('./controllers/products_controller.js')
+app.use('/products', productsController)
+
+const categoriesController = require('./controllers/categories_controller.js')
+app.use('/categories', categoriesController)
+
 // Listening //
 app.listen(PORT, async () => {
     console.log(`we get requests ... port:${PORT}`)
