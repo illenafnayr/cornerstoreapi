@@ -93,19 +93,5 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
     // timestamps: false
   });
-  // User.associate = (models) => {
-  //       //One to many with address
-  //       User.hasMany(models.Address, {
-  //           foreignKey: 'user_id'
-  //       });
-  //       //One to many with phoneNumber
-  //       User.hasMany(models.PhoneNumber, {
-  //           foreignKey: 'user_id'
-  //       });
-  //       //One to many with payment
-  //       User.hasMany(models.Payment, {
-  //           foreignKey: 'user_id'
-  //       });
-  //   }
   return User;
 };

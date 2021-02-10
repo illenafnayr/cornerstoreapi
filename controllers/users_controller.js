@@ -39,7 +39,7 @@ users.get('/:uuid', async(req, res)=>{
         return res.json(user)
     } catch (error) {
         console.log(error)
-        return res.status(500).json({error: 'something went wrong'})
+        return res.status(500).json({ error: 'something went wrong' })
     }
 })
 
@@ -53,7 +53,24 @@ users.delete('/:uuid', async(req, res)=>{
         await user.destroy()
         return res.json({ message: `User with UUID:${uuid} was deleted` })
     } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: 'something went wrong' })
+    }
+})
+
+users.patch('/:uuid', async(req, res)=>{
+    const uuid = req.params.uuid
+    try {
+        const user = await User.findOne({ where: { uuid } })
+       for (const i in req.body) {
+           user[i] = req.body[i]
+       }
         
+        await user.save()
+        res.json(user)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: 'something went wrong' })
     }
 })
 

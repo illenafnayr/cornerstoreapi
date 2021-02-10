@@ -44,6 +44,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         notEmpty: {
           msg: 'cc number field must not be empty'
+        },
+        isCreditCard: {
+          msg: 'must be a valid credit card number'
         }
       }
     },
