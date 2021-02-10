@@ -25,11 +25,27 @@ module.exports = (sequelize, DataTypes) => {
     },
     areaCode: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'areacode field must be provided'
+        },
+        notEmpty: {
+          msg: 'areacode field must not be empty'
+        }
+      }
     },
     number: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'number field must be provided'
+        },
+        notEmpty: {
+          msg: 'number field must not be empty'
+        }
+      }
     },
     type: {
       type: DataTypes.STRING,
