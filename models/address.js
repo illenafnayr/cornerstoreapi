@@ -21,27 +21,75 @@ module.exports = (sequelize, DataTypes) => {
     },
     street: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'street field must be provided'
+        },
+        notEmpty: {
+          msg: 'street field must not be empty'
+        }
+      }
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'city field must be provided'
+        },
+        notEmpty: {
+          msg: 'city field must not be empty'
+        }
+      }
     },
     state: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'state field must be provided'
+        },
+        notEmpty: {
+          msg: 'state field must not be empty'
+        }
+      }
     },
     zipcode: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'zipcode field must be provided'
+        },
+        notEmpty: {
+          msg: 'zipcode field must not be empty'
+        }
+      }
     },
     isShipping: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'shipping field must be provided'
+        },
+        notEmpty: {
+          msg: 'shipping field must not be empty'
+        }
+      }
     },
     isBilling: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'billing field must be provided'
+        },
+        notEmpty: {
+          msg: 'billing field must not be empty'
+        }
+      }
     }
   }, {
     sequelize,
