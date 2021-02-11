@@ -19,7 +19,7 @@ users.post('/', async(req, res)=>{
 users.get('/', async(req, res)=>{
     try {
         const users = await User.findAll({
-            include: ['payments', 'addresses', 'phonenumbers']
+            include: ['payments', 'addresses', 'phonenumbers', 'orders']
         })
         return res.json(users)
     } catch(error) {
