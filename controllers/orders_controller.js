@@ -20,59 +20,59 @@ orders.post('/', async(req, res)=>{
 })
 
 
-// // Read All
-// payments.get('/', async(req, res)=>{
-//     try {
-//         const payments = await Payment.findAll({ include: 'user'})
-//         return res.json(payments)
-//     } catch(error) {
-//         console.log(error)
-//         return res.status(500).json({error: 'something went wrong'})
-//     }
-// })
+// Read All
+orders.get('/', async(req, res)=>{
+    try {
+        const orders = await Order.findAll({ include: 'user'})
+        return res.json(orders)
+    } catch(error) {
+        console.log(error)
+        return res.status(500).json({error: 'something went wrong'})
+    }
+})
 
-// // Read One
-// payments.get('/:uuid', async(req, res)=>{
-//     const uuid = req.params.uuid
-//     try {
-//         const payment = await Payment.findOne({
-//             where: { uuid }
-//         })
-//         return res.json(payment)
-//     } catch (error) {
-//         console.log(error)
-//         return res.status(500).json({error: 'something went wrong'})
-//     }
-// })
+// Read One
+orders.get('/:uuid', async(req, res)=>{
+    const uuid = req.params.uuid
+    try {
+        const order = await Order.findOne({
+            where: { uuid }
+        })
+        return res.json(order)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({error: 'something went wrong'})
+    }
+})
 
-// payments.patch('/:uuid', async(req, res)=>{
-//     const uuid = req.params.uuid
-//     try {
-//         const payment = await Payment.findOne({ where: { uuid } })
-//        for (const i in req.body) {
-//            payment[i] = req.body[i]
-//        }
+orders.patch('/:uuid', async(req, res)=>{
+    const uuid = req.params.uuid
+    try {
+        const order = await Order.findOne({ where: { uuid } })
+       for (const i in req.body) {
+           order[i] = req.body[i]
+       }
         
-//         await payment.save()
-//         res.json(payment)
-//     } catch (error) {
-//         console.log(error)
-//         return res.status(500).json({ error: 'something went wrong' })
-//     }
-// })
+        await order.save()
+        res.json(order)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: 'something went wrong' })
+    }
+})
 
-// // Delete One
-// payments.delete('/:uuid', async(req, res)=>{
-//     const uuid = req.params.uuid
-//     try {
-//         const payment = await Payment.findOne({
-//             where: { uuid }
-//         })
-//         await payment.destroy()
-//         return res.json({ message: `Payment option with UUID:${uuid} was deleted` })
-//     } catch (error) {
+// Delete One
+orders.delete('/:uuid', async(req, res)=>{
+    const uuid = req.params.uuid
+    try {
+        const order = await Order.findOne({
+            where: { uuid }
+        })
+        await order.destroy()
+        return res.json({ message: `Order with UUID:${uuid} was deleted` })
+    } catch (error) {
         
-//     }
-// })
+    }
+})
 
-module.exports = payments;
+module.exports =orders;
