@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(Payment, { foreignKey: 'userId', as: 'payments' })
       this.hasMany(Address, { foreignKey: 'userId', as: 'addresses' })
       this.hasMany(PhoneNumber, { foreignKey: 'userId', as: 'phonenumbers' })
-      this.hasMany(Order, { foreignKey: 'userId', as: 'orders' })
+      this.hasMany(Order, { foreignKey: 'userId'})
     }
 
     toJSON(){

@@ -49,6 +49,9 @@ app.use('/attributevalues', attributeValuesController)
 const ordersController = require('./controllers/orders_controller.js')
 app.use('/orders', ordersController)
 
+const orderDetailsController = require('./controllers/orderdetails_controller.js')
+app.use('/orderdetails', orderDetailsController)
+
 // Listening //
 app.listen(PORT, async () => {
     console.log(`we get requests ... port:${PORT}`)

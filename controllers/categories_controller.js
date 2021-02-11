@@ -1,13 +1,18 @@
 const express = require('express');
 const categories = express.Router()
-const { sequelize, Category } = require('../models');
+const { sequelize, Category, Product } = require('../models');
 
 
 // Create
 categories.post('/', async(req, res)=>{
-    const { name } = req.body
+    const { productUuid, name } = req.body
+
+    // find product by uuid
+    const product = await Product.findOne({
+        where:  { uuid: productUuid }
+    })
     try {
-        const category = await Category.create({ name })
+        const category = await Category.create({ productId: product.id, name })
         return res.json(category)
     } catch (error) {
         console.log(error)

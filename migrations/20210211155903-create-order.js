@@ -9,7 +9,8 @@ module.exports = {
         type: DataTypes.INTEGER
       },
       uuid: {
-        type: DataTypes.UUID
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4
       },
       userId: {
         type: DataTypes.INTEGER,

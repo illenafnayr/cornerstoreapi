@@ -1,6 +1,7 @@
 const express = require('express');
 const users = express.Router()
-const { sequelize, User } = require('../models');
+const { sequelize, User, Order, OrderDetail } = require('../models');
+const order = require('../models/order');
 
 
 // Create
@@ -19,7 +20,7 @@ users.post('/', async(req, res)=>{
 users.get('/', async(req, res)=>{
     try {
         const users = await User.findAll({
-            include: ['payments', 'addresses', 'phonenumbers', 'orders']
+            include: ['payments', 'addresses', 'phonenumbers', {model: Order, include: OrderDetail}]
         })
         return res.json(users)
     } catch(error) {
