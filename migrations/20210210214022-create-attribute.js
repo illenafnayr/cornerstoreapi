@@ -12,10 +12,6 @@ module.exports = {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
       },
-      attributeId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
       productId: {
         type: DataTypes.INTEGER,
         allowNull: false

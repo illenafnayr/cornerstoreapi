@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ Attribute }) {
       // define association here
-      this.belongsTo(Attribute, { foreignKey: 'attributeValueId', as: 'attributeValue'})
+      this.belongsTo(Attribute, { foreignKey: 'attributeId', as: 'attributeValues'})
     }
   };
   AttributeValue.init({

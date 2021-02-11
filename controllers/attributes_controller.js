@@ -25,7 +25,7 @@ attributes.post('/', async(req, res)=>{
 attributes.get('/', async(req, res)=>{
     try {
         const attributes = await Attribute.findAll({
-            include: ['attributeValue']
+            include: ['attributeValues']
         })
         return res.json(attributes)
     } catch(error) {
@@ -40,7 +40,7 @@ attributes.get('/:uuid', async(req, res)=>{
     try {
         const attribute = await Attribute.findOne({
             where: { uuid },
-            // include: ['subCategory']
+            include: ['attributeValues']
         })
         return res.json(attribute)
     } catch (error) {

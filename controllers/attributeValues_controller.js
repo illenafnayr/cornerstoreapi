@@ -3,6 +3,7 @@ const attributeValues = express.Router()
 const { sequelize, AttributeValue, Attribute } = require('../models');
 
 
+
 // Create
 attributeValues.post('/', async(req, res)=>{
     const { attributeId, name, price, qty } = req.body
@@ -76,4 +77,4 @@ attributeValues.delete('/:uuid', async(req, res)=>{
     }
 })
 
-module.exports = phonenumbers;
+module.exports = attributeValues;
