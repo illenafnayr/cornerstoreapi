@@ -1,16 +1,18 @@
 const express = require('express');
 const products = express.Router()
-const { sequelize, Category, Product } = require('../models');
+const { sequelize, Category, Product, Attribute } = require('../models');
+
 
 
 // Create
 products.post('/', async(req, res)=>{
-    const { categoryUuid, name, description } = req.body
+    const { categoryUuid, attributeUuid, name, description } = req.body
     try {
         // find user by uuid
         const category = await Category.findOne({
             where:  { uuid: categoryUuid }
         })
+
         const product = await Product.create({ categoryId: category.id, name, description })
         return res.json(product)
     } catch (error) {
@@ -23,7 +25,7 @@ products.post('/', async(req, res)=>{
 // Read All
 products.get('/', async(req, res)=>{
     try {
-        const products = await Product.findAll({ include: 'category'})
+        const products = await Product.findAll({ include: ['category', 'attributes']})
         return res.json(products)
     } catch(error) {
         console.log(error)
@@ -36,7 +38,8 @@ products.get('/:uuid', async(req, res)=>{
     const uuid = req.params.uuid
     try {
         const product = await Product.findOne({
-            where: { uuid }
+            where: { uuid },
+            include: ['category', 'attributes']
         })
         return res.json(product)
     } catch (error) {

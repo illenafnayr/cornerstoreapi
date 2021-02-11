@@ -40,6 +40,9 @@ app.use('/products', productsController)
 const categoriesController = require('./controllers/categories_controller.js')
 app.use('/categories', categoriesController)
 
+const attributesController = require('./controllers/attributes_controller.js')
+app.use('/attributes', attributesController)
+
 // Listening //
 app.listen(PORT, async () => {
     console.log(`we get requests ... port:${PORT}`)

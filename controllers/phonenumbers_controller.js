@@ -35,7 +35,7 @@ phonenumbers.get('/', async(req, res)=>{
 phonenumbers.get('/:uuid', async(req, res)=>{
     const uuid = req.params.uuid
     try {
-        const address = await PhoneNumber.findOne({
+        const phonenumber = await PhoneNumber.findOne({
             where: { uuid }
         })
         return res.json(phonenumber)

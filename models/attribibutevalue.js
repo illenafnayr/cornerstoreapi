@@ -3,39 +3,39 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Product extends Model {
+  class AttributeValue extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Category, Attribute }) {
+    static associate({ Attribute }) {
       // define association here
-      this.belongsTo(Category, { foreignKey: 'categoryId', as: 'category' })
-      this.hasMany(Attribute, { foreignKey: 'productId', as: 'attributes' })
-    }
-    toJSON(){
-      return { ...this.get(), categoryId:undefined, id:undefined }
+      this.belongsTo(Attribute, { foreignKey: 'attributeValueId', as: 'attributeValue'})
     }
   };
-  Product.init({
+  AttributeValue.init({
     uuid: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
     },
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    price: {
+      type: DataTypes.DECIMAL,
       allowNull: false
     },
-    description: {
-      type: DataTypes.STRING,
+    qty: {
+      type: DataTypes.INTEGER,
       allowNull: false
     }
   }, 
   {
     sequelize,
-    tableName: 'products',
-    modelName: 'Product',
+    tableName: 'attribute_values',
+    modelName: 'AttributeValue',
   });
-  return Product;
+  return AttributeValue;
 };
