@@ -6,7 +6,7 @@ const { sequelize, AttributeValue, Attribute } = require('../models');
 
 // Create
 attributeValues.post('/', async(req, res)=>{
-    const { attributeId, name, price, qty } = req.body
+    const { attributeUuid, name, price, qty } = req.body
     try {
         // find user by uuid
         const attribute = await Attribute.findOne({
@@ -69,8 +69,8 @@ attributeValues.delete('/:uuid', async(req, res)=>{
         const attributeValue = await AttributeValue.findOne({
             where: { uuid }
         })
-        await attribibuteValue.destroy()
-        return res.json({ message: `Attributer value Number with UUID:${uuid} was deleted` })
+        await attributeValue.destroy()
+        return res.json({ message: `Attribute value Number with UUID:${uuid} was deleted` })
     } catch (error) {
         console.log(error)
         return res.status(500).json({ error: 'something went wrong' })

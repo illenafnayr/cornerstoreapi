@@ -25,7 +25,7 @@ products.post('/', async(req, res)=>{
 // Read All
 products.get('/', async(req, res)=>{
     try {
-        const products = await Product.findAll({ include: ['category', 'attributes']})
+        const products = await Product.findAll({ include: ['category', {model: Attribute, include: 'attributeValues'}]})
         return res.json(products)
     } catch(error) {
         console.log(error)

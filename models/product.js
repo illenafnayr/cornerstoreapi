@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ Category, Attribute }) {
       // define association here
       this.belongsTo(Category, { foreignKey: 'categoryId', as: 'category' })
-      this.hasMany(Attribute, { foreignKey: 'productId', as: 'attributes' })
+      this.hasMany(Attribute, { foreignKey: 'productId'})
     }
     toJSON(){
       return { ...this.get(), categoryId:undefined, id:undefined }
