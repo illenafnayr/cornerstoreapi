@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(Product, { foreignKey: 'productId', as: 'product' })
       this.hasMany(AttributeValue, { foreignKey: 'attributeId', as: 'attributeValues' })
     }
+    toJSON(){
+      return { ...this.get(), id: undefined, productId: undefined }
+    }
   };
   Attribute.init({
     uuid: {
@@ -22,7 +25,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'name field must be provided'
+        },
+        notEmpty: {
+          msg: 'name field must not be empty'
+        }
+      }
     }
   }, 
   {

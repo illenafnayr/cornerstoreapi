@@ -1,6 +1,6 @@
 const express = require('express');
 const orders = express.Router()
-const { sequelize, Order, User, OrderDetail } = require('../models');
+const { sequelize, Order, User, OrderDetail, Product} = require('../models');
 
 
 // Create
@@ -29,7 +29,7 @@ orders.post('/', async(req, res)=>{
 // Read All
 orders.get('/', async(req, res)=>{
     try {
-        const orders = await Order.findAll({ include: [{model: User}, {model: OrderDetail}]})
+        const orders = await Order.findAll({ include: [{model: User}, {model: OrderDetail, include: {model: Product}}]})
         return res.json(orders)
     } catch(error) {
         console.log(error)

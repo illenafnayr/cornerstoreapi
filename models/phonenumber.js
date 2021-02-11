@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsTo(User, { foreignKey: 'userId', as: 'user' })
     }
+    toJSON(){
+      return { ...this.get(), id: undefined, userId: undefined, createdAt: undefined, updatedAt: undefined }
+    }
   };
   PhoneNumber.init({
     uuid: {

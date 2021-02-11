@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsTo(Attribute, { foreignKey: 'attributeId', as: 'attributeValues'})
     }
+    toJSON(){
+      return { ...this.get(), id: undefined, attributeId: undefined, createdAt: undefined, updatedAt: undefined }
+    }
   };
   AttributeValue.init({
     uuid: {
@@ -22,14 +25,38 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'name field must be provided'
+        },
+        notEmpty: {
+          msg: 'name field must not be empty'
+        }
+      }
     },
     price: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'price field must be provided'
+        },
+        notEmpty: {
+          msg: 'price field must not be empty'
+        }
+      }
     },
     qty: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'qty field must be provided'
+        },
+        notEmpty: {
+          msg: 'qty field must not be empty'
+        }
+      }
     }
   }, 
   {

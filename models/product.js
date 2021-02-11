@@ -9,13 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Category, Attribute }) {
+    static associate({ Category, Attribute, OrderDetail }) {
       // define association here
       this.hasOne(Category, { foreignKey: 'productId', as: 'category' })
       this.hasMany(Attribute, { foreignKey: 'productId'})
+      // this.belongsTo(OrderDetail, {foreignKey: 'productId'})
     }
     toJSON(){
-      return { ...this.get(), categoryId:undefined, id:undefined }
+      return { ...this.get(), categoryId:undefined, id:undefined, createdAt: undefined, updatedAt: undefined }
     }
   };
   Product.init({
@@ -25,7 +26,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'name field must be provided'
+        },
+        notEmpty: {
+          msg: 'name field must not be empty'
+        }
+      }
     },
     description: {
       type: DataTypes.STRING,

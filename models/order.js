@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(User, { foreignKey: 'userId'})
       this.hasMany(OrderDetail, { foreignKey: 'orderId'})
     }
+    toJSON(){
+      return { ...this.get(), id: undefined, userId: undefined }
+    }
   };
   Order.init({
     uuid: {

@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(User, { foreignKey: 'userId', as: 'user' })
     }
     toJSON(){
-      return { ...this.get(), id: undefined, userId: undefined }
+      return { ...this.get(), id: undefined, userId: undefined, createdAt: undefined, updatedAt: undefined }
     }
   };
   Payment.init({

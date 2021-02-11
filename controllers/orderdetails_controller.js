@@ -1,17 +1,23 @@
 const express = require('express');
 const orderDetails = express.Router()
-const { sequelize, OrderDetail, Order } = require('../models');
+const { sequelize, OrderDetail, Order, Product } = require('../models');
 
 
 // Create
 orderDetails.post('/', async(req, res)=>{
-    const { orderUuid, qty} = req.body
+    const { orderUuid, productUuid, qty} = req.body
     try {
         // find user by uuid
         const order = await Order.findOne({
             where:  { uuid: orderUuid }
         })
-        const orderDetail = await OrderDetail.create({ orderId: order.id, qty })
+
+        // find product by uuid
+        const product = await Product.findOne({
+            where:  { uuid: productUuid }
+        })
+
+        const orderDetail = await OrderDetail.create({ orderId: order.id, productId: product.id, qty })
         return res.json(orderDetail)
     } catch (error) {
         console.log(error)
@@ -23,7 +29,7 @@ orderDetails.post('/', async(req, res)=>{
 // Read All
 orderDetails.get('/', async(req, res)=>{
     try {
-        const orderDetails = await OrderDetail.findAll({ include: 'order'})
+        const orderDetails = await OrderDetail.findAll({ include: ['order', {model: Product, include: {all:true}}]})
         return res.json(orderDetails)
     } catch(error) {
         console.log(error)
