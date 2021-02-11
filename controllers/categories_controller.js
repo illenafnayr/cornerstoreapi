@@ -63,6 +63,7 @@ categories.delete('/:uuid', async(req, res)=>{
     }
 })
 
+// Update One
 categories.patch('/:uuid', async(req, res)=>{
     const uuid = req.params.uuid
     try {

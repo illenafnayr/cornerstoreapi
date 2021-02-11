@@ -42,7 +42,8 @@ orders.get('/:uuid', async(req, res)=>{
     const uuid = req.params.uuid
     try {
         const order = await Order.findOne({
-            where: { uuid }
+            where: { uuid },
+            include: [{model: User}, {model: OrderDetail, include: {model: Product}}]
         })
         return res.json(order)
     } catch (error) {
@@ -51,21 +52,22 @@ orders.get('/:uuid', async(req, res)=>{
     }
 })
 
-orders.patch('/:uuid', async(req, res)=>{
-    const uuid = req.params.uuid
-    try {
-        const order = await Order.findOne({ where: { uuid } })
-       for (const i in req.body) {
-           order[i] = req.body[i]
-       }
+// // Update One
+// orders.patch('/:uuid', async(req, res)=>{
+//     const uuid = req.params.uuid
+//     try {
+//         const order = await Order.findOne({ where: { uuid } })
+//        for (const i in req.body) {
+//            order[i] = req.body[i]
+//        }
         
-        await order.save()
-        res.json(order)
-    } catch (error) {
-        console.log(error)
-        return res.status(500).json({ error: 'something went wrong' })
-    }
-})
+//         await order.save()
+//         res.json(order)
+//     } catch (error) {
+//         console.log(error)
+//         return res.status(500).json({ error: 'something went wrong' })
+//     }
+// })
 
 // Delete One
 orders.delete('/:uuid', async(req, res)=>{

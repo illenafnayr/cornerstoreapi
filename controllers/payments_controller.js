@@ -45,6 +45,7 @@ payments.get('/:uuid', async(req, res)=>{
     }
 })
 
+// Update One
 payments.patch('/:uuid', async(req, res)=>{
     const uuid = req.params.uuid
     try {

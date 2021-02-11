@@ -64,6 +64,7 @@ attributes.delete('/:uuid', async(req, res)=>{
     }
 })
 
+// Update One
 attributes.patch('/:uuid', async(req, res)=>{
     const uuid = req.params.uuid
     try {

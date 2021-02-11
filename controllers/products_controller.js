@@ -48,6 +48,7 @@ products.get('/:uuid', async(req, res)=>{
     }
 })
 
+// Update One
 products.patch('/:uuid', async(req, res)=>{
     const uuid = req.params.uuid
     try {
