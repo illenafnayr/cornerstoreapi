@@ -24,7 +24,7 @@ attributeValues.post('/', async(req, res)=>{
 // Read All
 attributeValues.get('/', async(req, res)=>{
     try {
-        const attribute_values = await AttributeValue.findAll()
+        const attributeValues = await AttributeValue.findAll()
         return res.json(attributeValues)
     } catch(error) {
         console.log(error)
