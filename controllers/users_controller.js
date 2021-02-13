@@ -1,12 +1,15 @@
 const express = require('express');
 const users = express.Router()
 const { sequelize, User, Order, OrderDetail, Product, Attribute, AttributeValue } = require('../models');
-const order = require('../models/order');
+// const order = require('../models/order');
+const bcrypt = require('bcrypt')
 
 
 // Create
 users.post('/', async(req, res)=>{
+    req.body.passwd = bcrypt.hashSync(req.body.passwd, bcrypt.genSaltSync(10))
     const { firstName, lastName, email, passwd, ip } = req.body
+    
     try {
         const user = await User.create({ firstName, lastName, email, passwd, ip })
         return res.json(user)
