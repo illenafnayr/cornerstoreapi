@@ -15,11 +15,21 @@ app.use(express.json())
 const corsOptions = {
     origin: "http://localhost:4321"
 };
+// app.options('*', cors(corsOptions))
 app.use(cors(corsOptions));
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+  });
+
 
 // Routes
 const usersController = require('./controllers/users_controller.js')
