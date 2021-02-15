@@ -76,19 +76,19 @@ module.exports = (sequelize, DataTypes) => {
             msg: 'password field must not be empty'
           }
         }
-    },
-    ip: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'ip field must be provided'
-          },
-          notEmpty: {
-            msg: 'ip field must not be empty'
-          }
-        }
-    },
+    }
+    // ip: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+    //     validate: {
+    //       notNull: {
+    //         msg: 'ip field must be provided'
+    //       },
+    //       notEmpty: {
+    //         msg: 'ip field must not be empty'
+    //       }
+    //     }
+    // },
   }, 
   {
     sequelize,
