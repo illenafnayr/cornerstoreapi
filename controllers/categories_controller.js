@@ -5,14 +5,14 @@ const { sequelize, Category, Product } = require('../models');
 
 // Create
 categories.post('/', async(req, res)=>{
-    const { productUuid, name } = req.body
+    const { productUuid, name, imgsrc } = req.body
 
     // find product by uuid
     const product = await Product.findOne({
         where:  { uuid: productUuid }
     })
     try {
-        const category = await Category.create({ productId: product.id, name })
+        const category = await Category.create({ productId: product.id, name, imgsrc })
         return res.json(category)
     } catch (error) {
         console.log(error)

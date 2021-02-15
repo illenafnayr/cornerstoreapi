@@ -30,6 +30,18 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'name field must not be empty'
         }
       }
+    },
+    imgsrc: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'imgsrc field must be provided'
+        },
+        notEmpty: {
+          msg: 'imgsrc field must not be empty'
+        }
+      }
     }
   }, 
   {
