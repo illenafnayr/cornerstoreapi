@@ -24,7 +24,7 @@ categories.post('/', async(req, res)=>{
 categories.get('/', async(req, res)=>{
     try {
         const categories = await Category.findAll({
-            include: [{model: Product}]
+            include: [{model: Product, include:{all:true}}]
         })
         return res.json(categories)
     } catch(error) {
@@ -39,7 +39,7 @@ categories.get('/:uuid', async(req, res)=>{
     try {
         const category = await Category.findOne({
             where: { uuid },
-            // include: ['subCategory']
+            include: ['subCategory']
         })
         return res.json(category)
     } catch (error) {
